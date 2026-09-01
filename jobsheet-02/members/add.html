@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>SIMPUS-Mini | Add Member</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
     <header>
@@ -12,8 +11,9 @@
             <ul>
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../books/list.html">Book List</a></li>
-                <li><a href="list.html">Member List</a></li>
-                <li><a href="add.html">Add Member</a></li>
+                <li><a href="../books/add.html">Add Book</a></li>
+                <li><a href="../members/list.html">Member List</a></li>
+                <li><a href="../members/add.html">Add Member</a></li>
             </ul>
         </nav>
     </header>
@@ -23,20 +23,24 @@
             <h2>Add Member</h2>
             <form>
                 <p>
-                    <label for="name">Name</label><br>
-                    <input type="text" id="name" name="name" required>
+                    <label for="nama">Name</label><br>
+                    <input type="text" id="nama" name="nama" required>
                 </p>
                 <p>
-                    <label for="member_no">Member No.</label><br>
-                    <input type="text" id="member_no" name="member_no" required>
+                    <label for="no_anggota">Member No.</label><br>
+                    <input type="text" id="no_anggota" name="no_anggota" required>
                 </p>
                 <p>
-                    <label for="address">Address</label><br>
-                    <input type="text" id="address" name="address">
+                    <label for="alamat">Address</label><br>
+                    <input type="text" id="alamat" name="alamat">
                 </p>
                 <p>
-                    <label for="phone">Phone No.</label><br>
-                    <input type="text" id="phone" name="phone">
+                    <label for="no_hp">Phone No.</label><br>
+                    <input type="text" id="no_hp" name="no_hp">
+                </p>
+                <p>
+                    <label for="email">Email</label><br>
+                    <input type="email" id="email" name="email">
                 </p>
                 <p>
                     <button type="submit">Save</button>
@@ -46,7 +50,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 SIMPUS-Mini &mdash; Jobsheet 2</p>
+        <p>&copy; 2026 SIMPUS-Mini &mdash; Jobsheet 1</p>
     </footer>
 </body>
 </html>
