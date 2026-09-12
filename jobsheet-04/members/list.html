@@ -15,8 +15,9 @@
             <ul>
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../books/list.html">Book List</a></li>
-                <li><a href="list.html">Member List</a></li>
-                <li><a href="add.html">Add Member</a></li>
+                <li><a href="../books/add.html">Add Book</a></li>
+                <li><a href="../members/list.html">Member List</a></li>
+                <li><a href="../members/add.html">Add Member</a></li>
             </ul>
         </nav>
     </header>
@@ -24,14 +25,15 @@
     <main>
         <section>
             <h2>Member List</h2>
-            <div class="table-responsive">
+            <div class="table-responsive"></div>
             <table>
                 <thead>
                     <tr>
-                        <th>Member ID</th>
+                        <th>Member No.</th>
                         <th>Name</th>
                         <th>Address</th>
-                        <th>Phone</th>
+                        <th>Phone No.</th>
+                        <th>Email</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -41,9 +43,10 @@
                         <td>Siti Aminah</td>
                         <td>Malang</td>
                         <td>0812xxxx</td>
+                        <td>siti000@gmail.com</td>
                         <td>
-                            <button type="button">Edit</button>
-                            <button type="button">Delete</button>
+                            <button type="button" class="edit-button">Edit</button>
+                            <button type="button" class="delete-button">Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -51,9 +54,10 @@
                         <td>Budi Santoso</td>
                         <td>Batu</td>
                         <td>0813xxxx</td>
+                        <td>budis16@gmail.com</td>
                         <td>
-                            <button type="button">Edit</button>
-                            <button type="button">Delete</button>
+                            <button type="button" class="edit-button">Edit</button>
+                            <button type="button" class="delete-button">Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -63,7 +67,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 SIMPUS-Mini &mdash; Jobsheet 3</p>
+        <p>&copy; 2026 SIMPUS-Mini &mdash; Jobsheet 1</p>
     </footer>
 </body>
 </html>

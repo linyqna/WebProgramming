@@ -13,7 +13,7 @@ body {
 }
 
 a {
-    color: #1d5b8a;
+    color: #0b8c79;
     text-decoration: none;
 }
 
@@ -23,7 +23,7 @@ a:hover {
 
 /* ===== Header & Navbar (Flexbox) ===== */
 header {
-    background-color: #1d5b8a;
+    background-color: #0b8c79;
     color: #fff;
     padding: 1rem 1.5rem;
     display: flex;
@@ -64,13 +64,18 @@ section {
 
 section h2 {
     margin-bottom: 1rem;
-    color: #1d5b8a;
+    color: #0b8c79;
 }
 
-/* ===== Kartu Statistik (CSS Grid) ===== */
+/* ===== Statistic Cards (CSS Grid) ===== */
+main section:nth-of-type(2) h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 0.5rem;
+}
+
 main section:nth-of-type(2) {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
 }
 
@@ -90,10 +95,10 @@ main section:nth-of-type(2) article h3 {
 main section:nth-of-type(2) article p {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #1d5b8a;
+    color: #0b8c79;
 }
 
-/* ===== Tabel ===== */
+/* ===== Table ===== */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -106,7 +111,7 @@ th, td {
 }
 
 thead {
-    background-color: #1d5b8a;
+    background-color: #0b8c79;
     color: #fff;
 }
 
@@ -125,16 +130,19 @@ td button {
     border-radius: 4px;
     cursor: pointer;
     font-size: 0.85rem;
-}
-
-td button:first-of-type {
-    background-color: #f0ad4e;
     color: #fff;
 }
 
-td button:last-of-type {
-    background-color: #d9534f;
-    color: #fff;
+button.edit-button {
+    background-color: #f9f937;
+}
+
+button.detail-button {
+    background-color: #8cff6d;
+}
+
+button.delete-button {
+    background-color: #ff4e48;
 }
 
 /* ===== Form ===== */
@@ -160,7 +168,7 @@ form select {
 }
 
 form button[type="submit"] {
-    background-color: #1d5b8a;
+    background-color: #0b8c79;
     color: #fff;
     border: none;
     padding: 0.6rem 1.5rem;
@@ -170,7 +178,7 @@ form button[type="submit"] {
 }
 
 form button[type="submit"]:hover {
-    background-color: #164869;
+    background-color: #0b8c79;
 }
 
 /* ===== Footer ===== */
@@ -181,8 +189,10 @@ footer {
     font-size: 0.9rem;
 }
 
+
 /* ===== Tabel Responsif ===== */
-.table-responsive {
+.table-responsive,
+pre {
     overflow-x: auto;
 }
 
@@ -201,7 +211,7 @@ footer {
 /* ===== Responsive Breakpoints ===== */
 
 /* Tablet ke bawah */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     main section:nth-of-type(2) {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -240,5 +250,11 @@ footer {
     form input,
     form select {
         max-width: 100%;
+    }
+}
+
+@media (min-width: 1400px) {
+    main {
+        max-width: 1200px;
     }
 }
