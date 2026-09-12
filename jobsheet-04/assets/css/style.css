@@ -196,65 +196,75 @@ pre {
     overflow-x: auto;
 }
 
-/* ===== Hamburger Menu (checkbox hack) ===== */
+/* ===== Hamburger Menu (Mobile-First Default) Exercise 5 ===== */
 .nav-toggle {
     display: none;
 }
 
 .nav-toggle-label {
-    display: none;
+    display: block;
     font-size: 1.6rem;
     color: #fff;
     cursor: pointer;
 }
 
-/* ===== Responsive Breakpoints ===== */
-
-/* Tablet ke bawah */
-@media (max-width: 900px) {
-    main section:nth-of-type(2) {
-        grid-template-columns: repeat(2, 1fr);
-    }
+header {
+    position: relative;
 }
 
-/* Mobile */
-@media (max-width: 480px) {
-    header {
-        position: relative;
-    }
+header nav {
+    display: none;
+    width: 100%;
+    order: 3;
+    margin-top: 1rem;
+}
 
-    .nav-toggle-label {
-        display: block;
-    }
+.nav-toggle:checked ~ nav {
+    display: block;
+}
 
-    header nav {
-        display: none;
-        width: 100%;
-        order: 3;
-        margin-top: 1rem;
-    }
+header nav ul {
+    flex-direction: column;
+    gap: 0.75rem;
+}
 
-    .nav-toggle:checked ~ nav {
-        display: block;
-    }
+/* Exercise 5 */
+main section:nth-of-type(2) {
+    display: grid;
+    grid-template-columns: 1fr; /* UBAH: 1 kolom di HP secara default */
+    gap: 1rem;
+}
 
-    header nav ul {
-        flex-direction: column;
-        gap: 0.75rem;
-    }
+/* ===== Responsive Breakpoints (Mobile-First) ===== */
 
+@media (min-width: 481px) {
     main section:nth-of-type(2) {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     form input,
     form select {
-        max-width: 100%;
+        max-width: 400px;
     }
 }
 
-@media (min-width: 1400px) {
-    main {
-        max-width: 1200px;
+@media (min-width: 769px) {
+    .nav-toggle-label {
+        display: none;
+    }
+
+    header nav {
+        display: block;
+        width: auto;
+        order: initial;
+        margin-top: 0;
+    }
+
+    header nav ul {
+        flex-direction: row;
+    }
+
+    main section:nth-of-type(2) {
+        grid-template-columns: repeat(4, 1fr);
     }
 }

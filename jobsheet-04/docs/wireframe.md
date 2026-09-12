@@ -24,6 +24,14 @@ The existing pages (Home, Add/List Books, Add/List Members — Jobsheets 1-3) do
         -> [Back to Dashboard]
 ```
 
+## User Flow — Search Overdue Loans
+
+```
+[Officer Sign In] -> [Dashboard] -> [Select "Borrowing/Loans" menu]
+        -> [Filter Status: "Overdue"] -> [System Displays Past Due Fines/Members]
+        -> [Select Member Detail] -> [Option: Send Reminder / Process Fine Payment]
+```
+
 ## Wireframe: Login Page
 
 ```
@@ -31,14 +39,14 @@ The existing pages (Home, Add/List Books, Add/List Members — Jobsheets 1-3) do
 |              SIMPUS-Mini             |
 |--------------------------------------|
 |                                      |
-|        [ Officer Sign In ]          |
+|          [ Officer Sign In ]         |
 |                                      |
-|   Username : [______________]       |
-|   Password : [______________]       |
+|    Username : [______________]       |
+|    Password : [______________]       |
 |                                      |
-|          [   Sign In   ]            |
+|           [   Sign In   ]            |
 |                                      |
-|   Don't have an account? Sign up    |
+|    Don't have an account? Sign up    |
 +--------------------------------------+
 ```
 
@@ -69,7 +77,7 @@ The existing pages (Home, Add/List Books, Add/List Members — Jobsheets 1-3) do
 |  Book    : [ dropdown, stock > 0 ]   |
 |  Borrow Date : [ auto: today ]       |
 |                                      |
-|          [  Save Borrowing  ]       |
+|         [  Save Borrowing  ]         |
 +--------------------------------------+
 ```
 
@@ -80,7 +88,7 @@ The existing pages (Home, Add/List Books, Add/List Members — Jobsheets 1-3) do
 |  Book Return                         |
 |--------------------------------------|
 |  Search active transaction:          |
-|  [ member name / book title ______] |
+|  [ member name / book title ______]  |
 |                                      |
 |  Member | Book | Borrow Date | [Return] |
 +--------------------------------------+
@@ -98,7 +106,30 @@ The existing pages (Home, Add/List Books, Add/List Members — Jobsheets 1-3) do
 +--------------------------------------+
 ```
 
+## Wireframe: Register New Member Page
+
+```
++----------------------------------------------------------+
+|  SIMPUS-Mini      Home | Books List | Register | Log In  |
++----------------------------------------------------------+
+|                                                          |
+|                     Register New Member                  |
+|                                                          |
+|                Full Name : [______________]              |
+|                Email     : [______________]              |
+|                Phone     : [______________]              |
+|                Password  : [______________]              |
+|                                                          |
+|                        [ Register ]                      |
+|                                                          |
+|              Already have an account? Log in             |
++----------------------------------------------------------+
+```
+
 ## Consistency with Existing Design
 - Accent colors, navbar typography, and table/card styles follow `assets/css/style.css` built in Jobsheets 2-3.
 - Navbar will add a **Borrowing** menu and login status indicator (officer name / Logout button) starting implementation in Jobsheet 10.
 - Edge cases to handle during implementation: books with zero stock cannot be selected in borrowing forms; members with overdue fees are validated in Jobsheet 12 (independent assignment).
+- **Duplicate Active Loan**: Preventing the librarian from lending the same book copy to the same member if they haven't returned the previous copy.
+- **Max Limit Reached**: System blocks new loans if a member reaches the maximum active loan limit (e.g., 3 books).
+- **Out of Stock During Concurrent Requests**: Handling stock reduction when two officers attempt to lend the last available book copy at the same time.
