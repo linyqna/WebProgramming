@@ -32,9 +32,13 @@ function initTableFilter() {
     input.addEventListener("keyup", function () {
         const keyword = input.value.toLowerCase();
         const rows = table.querySelectorAll("tbody tr");
+        
         rows.forEach(function (row) {
-            const text = row.textContent.toLowerCase();
-            row.style.display = text.includes(keyword) ? "" : "none";
+            const titleTd = row.querySelector("td");
+            if (titleTd) {
+                const text = titleTd.textContent.toLowerCase();
+                row.style.display = text.includes(keyword) ? "" : "none";
+            }
         });
     });
 }
@@ -98,6 +102,19 @@ function initFormValidation() {
             } else {
                 removeError(stock);
             }
+        }
+
+        const isbn = form.querySelector("[name='isbn']");
+        if (isbn && isbn.value.trim() !== "") {
+            const isbnPattern = /^[0-9-]+$/;
+            if (!isbnPattern.test(isbn.value.trim())) {
+                showError(isbn, "ISBN can only contain numbers and hyphens (-).");
+                valid = false;
+            } else {
+                removeError(isbn);
+            }
+        } else if (isbn) {
+            removeError(isbn);
         }
 
         if (!valid) {
