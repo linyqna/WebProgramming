@@ -24,6 +24,9 @@ if (!is_numeric($year) || $year < 1900 || $year > 2026) {
 if (!is_numeric($stock) || $stock < 0) {
     $errors[] = "Stock cannot be negative.";
 }
+if ($isbn !== '' && !preg_match('/^[0-9\-]+$/', $isbn)) {
+    $errors[] = "ISBN hanya boleh berisi angka dan tanda hubung (-).";
+}
 
 if (!empty($errors)) {
     $_SESSION['flash'] = ['type' => 'error', 'message' => implode(' ', $errors)];

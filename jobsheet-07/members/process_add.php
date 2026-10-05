@@ -13,6 +13,12 @@ if ($name === '') {
 if ($memberId === '') {
     $errors[] = "Member ID is required.";
 }
+if ($address === '') {
+    $errors[] = "Address is required.";
+}
+if ($phone !== '' && !preg_match('/^[0-9]+$/', $phone)) {
+    $errors[] = "Phone number must contain only numbers.";
+}
 
 if (!empty($errors)) {
     $_SESSION['flash'] = ['type' => 'error', 'message' => implode(' ', $errors)];
