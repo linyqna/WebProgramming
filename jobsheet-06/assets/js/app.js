@@ -36,6 +36,7 @@ function initTableFilter() {
     input.addEventListener("keyup", function () {
         const keyword = input.value.toLowerCase();
         const rows = table.querySelectorAll("tbody tr");
+        
         rows.forEach(function (row) {
             const text = row.textContent.toLowerCase();
             row.style.display = text.includes(keyword) ? "" : "none";
@@ -104,6 +105,19 @@ function initFormValidation() {
             }
         }
 
+        const isbn = form.querySelector("[name='isbn']");
+        if (isbn && isbn.value.trim() !== "") {
+            const isbnPattern = /^[0-9-]+$/;
+            if (!isbnPattern.test(isbn.value.trim())) {
+                showError(isbn, "ISBN can only contain numbers and hyphens (-).");
+                valid = false;
+            } else {
+                removeError(isbn);
+            }
+        } else if (isbn) {
+            removeError(isbn);
+        }
+
         if (!valid) {
             e.preventDefault();
         }
@@ -116,3 +130,47 @@ document.addEventListener("DOMContentLoaded", function () {
     initTableFilter();
     initFormValidation();
 });
+
+async function loadDataList(jsonUrl, keys) {
+    const tbody = document.querySelector(".table-responsive table tbody");
+    const loading = document.getElementById("loading-indicator");
+    
+    if (!tbody) return;
+
+    if (loading) loading.style.display = "block";
+    tbody.innerHTML = "";
+
+    try {
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+
+        const res = await fetch(jsonUrl);
+        if (!res.ok) {
+            throw new Error("Failed to fetch data (status " + res.status + ")");
+        }
+
+        const dataList = await res.json();
+
+        dataList.forEach(function (item) {
+            const tr = document.createElement("tr");
+
+            let cellsHtml = "";
+            keys.forEach(function (key) {
+                cellsHtml += "<td>" + (item[key] !== undefined ? item[key] : "-") + "</td>";
+            });
+
+            cellsHtml += "<td>" +
+                "<button type=\"button\" class=\"edit-button\">Edit</button> " +
+                "<button type=\"button\" class=\"btn-delete\">Delete</button>" +
+                "</td>";
+
+            tr.innerHTML = cellsHtml;
+            tbody.appendChild(tr);
+        });
+
+    } catch (err) {
+        const colSpanCount = keys.length + 1;
+        tbody.innerHTML = "<tr><td colspan=\"" + colSpanCount + "\">Failed to load data: " + err.message + "</td></tr>";
+    } finally {
+        if (loading) loading.style.display = "none";
+    }
+}

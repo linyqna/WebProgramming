@@ -24,6 +24,7 @@ async function loadBookList() {
                 "<td>" + book.author + "</td>" +
                 "<td>" + book.year + "</td>" +
                 "<td>" + book.stock + "</td>" +
+                "<td>" + book.category + "</td>" +
                 "<td>" +
                 "<button type=\"button\">Edit</button> " +
                 "<button type=\"button\" class=\"btn-delete\">Delete</button>" +
