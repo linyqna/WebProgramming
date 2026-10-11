@@ -26,6 +26,7 @@ $books = $pdo->query("SELECT * FROM books ORDER BY id DESC")->fetchAll(PDO::FETC
                     <tr>
                         <th>Title</th>
                         <th>Author</th>
+                        <th>Added Date</th>
                         <th>Year</th>
                         <th>Stock</th>
                         <th>Action</th>
