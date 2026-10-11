@@ -1,34 +1,37 @@
 <?php
 require __DIR__ . '/includes/connection.php';
 
-$jsonData = file_get_contents(__DIR__ . '/data/book.json');
-$books = json_decode($jsonData, true);
+$jsonString = file_get_contents(__DIR__ . '/data/books.json');
+$booksData = json_decode($jsonString, true);
 
-if (!$books) {
-    die("Data JSON tidak ditemukan atau kosong.");
+if (!$booksData) {
+    die("File JSON tidak ditemukan atau formatnya salah.");
 }
 
-$stmt = $pdo->prepare("
-    INSERT INTO book (title, author, year, isbn, stok, kategori) 
-    VALUES (:title, :author, :year, :isbn, :stok, :kategori)
-");
+$stmt = $pdo->prepare(
+    "INSERT INTO books (title, author, year, isbn, stock, category) 
+     VALUES (:title, :author, :year, :isbn, :stock, :category)"
+);
 
-$count = 0;
-foreach ($books as $book) {
+$berhasil = 0;
+echo "<h3>Proses Migrasi Dimulai...</h3>";
+
+foreach ($booksData as $book) {
     try {
         $stmt->execute([
             'title' => $book['title'],
             'author' => $book['author'],
-            'year' => (int)$book['year'],
-            'isbn' => $book['isbn'],
-            'stok' => (int)$book['stok'],
-            'kategori' => $book['kategori']
+            'year' => (int) $book['year'],
+            'isbn' => '-', 
+            'stock' => (int) $book['stock'],
+            'category' => $book['category']
         ]);
-        $count++;
+        echo "Berhasil memindahkan: " . $book['title'] . "<br>";
+        $berhasil++;
     } catch (PDOException $e) {
-        echo "Gagal memigrasi buku '{$book['title']}': " . $e->getMessage() . "<br>";
+        echo "<span style='color:red;'>Gagal memindahkan " . $book['title'] . ": " . $e->getMessage() . "</span><br>";
     }
 }
 
-echo "Migrasi selesai! Total $count buku berhasil dipindahkan ke database.";
+echo "<strong>Selesai! Total $berhasil buku berhasil dimasukkan ke database.</strong>";
 ?>
