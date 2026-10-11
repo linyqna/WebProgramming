@@ -32,12 +32,28 @@ $stmt = $pdo->prepare(
      VALUES (:name, :member_id, :address, :phone)
      RETURNING id"
 );
-$stmt->execute([
-    'name' => $name,
-    'member_id' => $memberId,
-    'address' => $address,
-    'phone' => $phone,
-]);
+
+try {
+    $stmt->execute([
+        'name' => $name,
+        'member_id' => $member_id,
+        'address' => $address,
+        'phone' => $phone
+    ]);
+    
+    $_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Anggota berhasil ditambahkan.'];
+    header('Location: list.php');
+    exit;
+
+} catch (PDOException $e) {
+    if ($e->getCode() == '23505') {
+        $_SESSION['flash'] = ['type' => 'danger', 'pesan' => 'No. Member sudah dipakai, gunakan nomor lain.'];
+        header('Location: add.php');
+        exit;
+    } else {
+        die("Terjadi kesalahan database: " . $e->getMessage());
+    }
+}
 
 $_SESSION['flash'] = ['type' => 'success', 'message' => 'Member added successfully.'];
 header('Location: list.php');

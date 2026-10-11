@@ -41,6 +41,7 @@ $books = $pdo->query("SELECT * FROM books ORDER BY id DESC")->fetchAll(PDO::FETC
                         <tr>
                             <td><?php echo $book['title']; ?></td>
                             <td><?php echo $book['author']; ?></td>
+                            <td><?php echo $book['tanggal_ditambahkan']; ?></td>
                             <td><?php echo $book['year']; ?></td>
                             <td><?php echo $book['stock']; ?></td>
                             <td>

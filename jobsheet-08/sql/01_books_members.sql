@@ -20,3 +20,5 @@ CREATE TABLE IF NOT EXISTS members (
     address VARCHAR(255),
     phone VARCHAR(30)
 );
+
+ALTER TABLE book ADD COLUMN tanggal_ditambahkan TIMESTAMP DEFAULT NOW();
