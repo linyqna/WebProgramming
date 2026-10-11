@@ -1,6 +1,6 @@
 <?php
 $host = "localhost";
-$port = "5432";
+$port = "5433";
 $db   = "simpus_mini";
 $user = "postgres";
 $pass = "postgres";
