@@ -6,7 +6,15 @@ require __DIR__ . '/../includes/connection.php';
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 
-$books = $pdo->query("SELECT * FROM books ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
+$search = trim($_GET['search'] ?? '');
+
+if ($search !== '') {
+    $stmt = $pdo->prepare("SELECT * FROM books WHERE title ILIKE :search ORDER BY id DESC");
+    $stmt->execute(['search' => "%$search%"]);
+    $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    $books = $pdo->query("SELECT * FROM books ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
+}
 ?>
         <section>
             <h2>Book List</h2>
